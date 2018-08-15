@@ -154,6 +154,7 @@ Supporting OS subroutines required: <<sbrk>>.  */
 #include <_ansi.h>
 #include <reent.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <malloc.h>
 
 #ifndef _REENT_ONLY
@@ -161,6 +162,19 @@ Supporting OS subroutines required: <<sbrk>>.  */
 void *
 malloc (size_t nbytes)		/* get a block */
 {
+
+#ifdef _LIBC_DEBUG_HEAP
+  uint32_t Caller;
+
+  register int *a1 asm ("a1");
+  Caller=*(uint32_t *) ((char *) a1 + 12);
+
+	puts_nobuff("****** Malloc:  ");
+
+	puthexint_nobuff(Caller);
+	puts_nobuff("; ");
+
+#endif /* _LIBC_DEBUG_HEAP */
   return _malloc_r (_REENT, nbytes);
 }
 

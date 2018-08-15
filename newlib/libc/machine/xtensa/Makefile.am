@@ -8,7 +8,7 @@ AM_CCASFLAGS = $(INCLUDES)
 
 noinst_LIBRARIES = lib.a
 
-lib_a_SOURCES = setjmp.S memcpy.S memset.S strcmp.S strcpy.S strncpy.S strlen.S
+lib_a_SOURCES = setjmp.S memcpy.S memset.S strcmp.S strcpy.S strncpy.S strlen.S 
 lib_a_CCASFLAGS=$(AM_CCASFLAGS)
 lib_a_CFLAGS=$(AM_CFLAGS)
 TARGETDOC = ../../tmp.texi
